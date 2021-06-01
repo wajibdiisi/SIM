@@ -27,9 +27,9 @@ public class Canvas : MonoBehaviour
             }
         }
     }
-    public void changeCountDown(bool value){
-        this.doCountDown = value;
-        this.currentTime = 3f;
+    public void changeCountDown(float value){
+        this.doCountDown = true;
+        this.currentTime = value;
         countDownText.enabled = true;
     }
 }

@@ -22,7 +22,9 @@ public class Player : MonoBehaviour {
 			if( direction.magnitude >= 0.1f){
 			float turn = Input.GetAxis("Horizontal");
 			anim.SetInteger ("AnimationPar", 1);
+			if(controller.enabled == true){
 			controller.Move(direction * speed  * Time.deltaTime);
+			}
 			moveDirection.y -= gravity * Time.deltaTime;
 			}else {
 				anim.SetInteger ("AnimationPar", 0);

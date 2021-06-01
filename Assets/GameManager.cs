@@ -19,12 +19,20 @@ public class GameManager : MonoBehaviour
     public GameObject deathParticle;
     public GameObject character;
     ThirdPersonCamera thirdPersonCamera;
+    CharacterController cc;
+    public UnityEvent startTimer;
+    bool crRunning;
     bool isPaused;
     bool isFinished;
     // Start is called before the first frame update
     void Start()
     {
         thirdPersonCamera = character.GetComponentInChildren<ThirdPersonCamera>();
+        cc = character.GetComponent<CharacterController>();
+        if(crRunning == false){
+            StartCoroutine(startGame());
+        }
+       
     }
 
     // Update is called once per frame
@@ -73,11 +81,11 @@ public class GameManager : MonoBehaviour
            
            
         if(isFinished){
-             character.GetComponent<CharacterController>().enabled = false;
+             cc.enabled = false;
              anim.SetTrigger("Death");
         finishText.text = "Mission Failed";
         }else {
-               character.GetComponent<CharacterController>().enabled = false;
+               cc.enabled = false;
            finishText.text = "Mission Finished"; 
         }
 
@@ -101,5 +109,13 @@ public class GameManager : MonoBehaviour
         Debug.Log(scn);
         SceneManager.LoadScene(scn.name);
 
+    }
+    IEnumerator startGame(){
+        crRunning = true;
+        GetComponent<Canvas>().changeCountDown(5);
+        cc.enabled = false;
+        yield return new WaitForSeconds(5f);
+        cc.enabled = true;
+        crRunning = false;
     }
 }
