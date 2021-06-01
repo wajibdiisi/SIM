@@ -21,9 +21,7 @@ public class SendAnswer : MonoBehaviour
     void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player")){
             events.Invoke();
-            particle =Instantiate(particle,transform.position,transform.rotation);
-            particle.gameObject.SetActive(true);
-            Destroy(this.gameObject);
+            Time.timeScale = 1F;
         }
     }
 }

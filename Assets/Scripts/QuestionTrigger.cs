@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class QuestionTrigger : MonoBehaviour
 {
     public UnityEvent Event;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class QuestionTrigger : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player")){
+            Time.timeScale = 0.5F;
             Event.Invoke();
         }
     }

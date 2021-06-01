@@ -1,0 +1,19 @@
+Layer healthbar:
+- health_left/right
+- (frame)
+
+Layer lineless staminabar:
+- (frame)
+- stamina [animate]
+- lineless_staminabar_background
+
+Layer lined stamina:
+*frame di tipe lined, linenya ada di backgroundnya bukan di framenya. jadi framenya emang sama kyk yg lineless.
+> Icon:
+	- (frame)
+	- stamina [animate]
+	- lined_staminabar_icon_back
+> No Icon:
+	- (frame)
+	- stamina [animate]
+	- lined_staminabar_back

@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class IntEvent : UnityEvent<int> {
+
+}
 
 public class Question : MonoBehaviour
 {
     public UnityEvent destroyEvent;
+    public ParticleSystem correctParticle;
+    public ParticleSystem wrongParticle;
+    public IntEvent scoreEvent;
     public string correct_answer;
     public string selected_answer;
     // Start is called before the first frame update
@@ -20,18 +27,24 @@ public class Question : MonoBehaviour
     {
         
     }
-    public void SelectedAnswer(string value){
-        
+    public void CheckAnswer(string answer){
+        Transform child = transform.Find(answer);
+        if(answer == correct_answer){
+        destroyEvent.Invoke();
+        scoreEvent.Invoke(100);
+        correctParticle = Instantiate(correctParticle,child.position,child.rotation);
+        correctParticle.gameObject.SetActive(true);
+        Destroy(this.gameObject);
+        }else{
+        destroyEvent.Invoke();
+        scoreEvent.Invoke(-100);
+        wrongParticle = Instantiate(wrongParticle,child.position,child.rotation);
+        wrongParticle.gameObject.SetActive(true);
+        Destroy(this.gameObject);
+        }   
 
     }
-    public void CheckAnswer(string answer){
-        if(answer == this.correct_answer ){
-            Debug.Log("Benar");
-        }else{
-            Debug.Log("Salah");
-            
-        }
-        destroyEvent.Invoke();
-        Destroy(this.gameObject);
+    public void ParticleCollision(string value){
+        
     }
 }
