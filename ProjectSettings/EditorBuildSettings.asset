@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sains.unity
     guid: 3f979ee58998155439998fa3469a37f9
+  - enabled: 1
+    path: Assets/Scenes/Musik.unity
+    guid: 3a61eb0e70984b440a8d914bfed89197
+  - enabled: 1
+    path: Assets/Scenes/Matematika.unity
+    guid: 3a53634402e780b408489ad3d1a76266
   m_configObjects: {}

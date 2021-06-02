@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public int currentScore;
@@ -75,6 +76,13 @@ public class GameManager : MonoBehaviour
         currentScore += score;
         scoreText.text = "Score : " + currentScore.ToString();
     }
+    public void BackToMenu(){
+        Time.timeScale = 1F;
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+    }
+    public void QuitGame(){
+        Application.Quit();
+    }
     public void showResult(){
         Animator anim = character.GetComponent<Animator>();
         thirdPersonCamera.enabled = false;
@@ -92,7 +100,7 @@ public class GameManager : MonoBehaviour
         correctScore.text = "Correct : " + correctAnswer.ToString();
         scoreTextFinish.text = "Score : " + currentScore.ToString();
         wrongScore.text = "Wrong : " + wrongAnswer.ToString();
-        resultEvent.Invoke();
+        resultEvent.Invoke();   
         if(isFinished){
         StartCoroutine(waitFinish(2f));
         }else {
@@ -106,7 +114,7 @@ public class GameManager : MonoBehaviour
     }
     public void Retry(){
         Scene scn = SceneManager.GetActiveScene();
-        Debug.Log(scn);
+        Time.timeScale = 1F;
         SceneManager.LoadScene(scn.name);
 
     }
